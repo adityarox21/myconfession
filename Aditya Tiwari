@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession to Vaibhavi</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #yesBtn {
+            background-color: #28a745;
+            color: #fff;
+        }
+        #noBtn {
+            background-color: #dc3545;
+            color: #fff;
+            position: relative;
+        }
+        button:hover {
+            transform: translateY(-3px);
+        }
+        button:active {
+            transform: translateY(2px);
+        }
+        #message {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        .emoji {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        .heart-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background-color: #ff6b6b;
+            transform: rotate(45deg);
+            animation: floatUp 4s infinite ease-in-out;
+            border-radius: 50% 50% 0 0;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-animation" id="heartContainer"></div>
+    <div class="container">
+        <h1>Do you love me? 💖</h1>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        document.getElementById("yesBtn").addEventListener("click", function() {
+            document.querySelector('h1').innerHTML = 'You are the best thing that ever happened to me 💖';
+            document.getElementById("message").innerHTML = `
+                <p>Here’s a little cute poem for you:</p>
+                <p>Vaibhavi, your smile is the sun after the rain,</p>
+                <p>Your hair dances in the breeze, a beautiful mane.</p>
+                <p>Your voice is a melody that soothes my soul,</p>
+                <p>With you by my side, I feel whole.</p>
+                <p>In your eyes, I see a future so bright,</p>
+                <p>With you, everything feels just right.</p>
+                <div class="emoji">🌹😍✨</div>
+            `;
+            createHearts();
+        });
+
+        document.getElementById("noBtn").addEventListener("mouseover", function() {
+            const x = Math.random() * (window.innerWidth - this.offsetWidth) + "px";
+            const y = Math.random() * (window.innerHeight - this.offsetHeight) + "px";
+            this.style.top = y;
+            this.style.left = x;
+        });
+
+        function createHearts() {
+            const heartContainer = document.getElementById('heartContainer');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartContainer.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
